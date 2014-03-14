@@ -2,6 +2,21 @@ program = require('commander')
 ShussServer = require './shuss-server'
 
 class ShussCli
+
+  @ascii = "                   ❄                      ❄\n" +
+      "❄  _____ __    ❄              ❄     (ツ)\n" +
+      "  / ___// /_  __  ____________    o––\\ \\--o   ❄\n" +
+      '  \\__ \\/ __ \\/ / / / ___/ ___/   /   /–/   \\\n' +
+      " ___/ / / / / /_/ (__  |__  )   /    \\ \\/   \\\n" +
+      "/____/_/ /_/\\__,_/____/____/         / /  ❄ \n" +
+      "                              ❄     / /\n" +
+      " ❄                   ❄                       ❄\n"
+      # "   _____ __                       \n" +
+      # "  / ___// /_  __  ____________    \n" +
+      # "  \\__ \\/ __ \\/ / / / ___/ ___/ \n" +
+      # " ___/ / / / / /_/ (__  |__  )    \n" +
+      # "/____/_/ /_/\\__,_/____/____/ ❄   \n"
+
   constructor:(@program)->
     @program
       .version('0.1.1')
@@ -41,6 +56,7 @@ class ShussCli
     @logger.resetConfig()
 
   _startAction: (port)=>
+    @_showAscii()
     @logger.debug 'starting'
     @_loadCliArgs()
     port && @config.set 'port', port
@@ -49,5 +65,8 @@ class ShussCli
 
     server = new ShussServer(@config, @logger)
     server.start()
+
+  _showAscii: ()->
+    console.log ShussCli.ascii
 
 module.exports = new ShussCli program
