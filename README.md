@@ -1,4 +1,4 @@
-# shuss - super http u* static server
+# shuss - super http u* static server [![NPM version](https://badge.fury.io/js/shuss.png)](http://badge.fury.io/js/shuss)
 
 Super simple yet comprehensive static files server. Shuss :ski:
 
@@ -6,15 +6,27 @@ _u*:_ pick one
 * uber
 * unicorn
 * universal
-* ubuesk
+* ubuesque
 * unix
 * uhuhuh
 
 ## Installation
 
+Shuss requires [`Node.js`](http://nodejs.org/) to run.
+
 ```shell
 npm install shuss
 ```
+
+You'd probably want it in available globally, with:
+
+```shell
+npm install -g shuss
+```
+
+### Livereload
+
+To enjoy the pleasure of the livereload feature, just follow the official browser extension [installation guide](http://feedback.livereload.com/knowledgebase/articles/86242-how-do-i-install-and-use-the-browser-extensions-). Easy.
 
 ## Settings
 
@@ -115,6 +127,7 @@ $ > cat config.json
 
 ### features
 
+* test config solver, urgent, not how to do it yet, maybe [`node-env-file`](https://www.npmjs.org/package/node-env-file)
 * run as a daemon
 * access to more config (livereload especially)
 * any idea?
