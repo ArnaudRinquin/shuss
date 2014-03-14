@@ -1,12 +1,10 @@
-#!/usr/bin/env coffee
-
 program = require('commander')
 ShussServer = require './shuss-server'
 
 class ShussCli
   constructor:(@program)->
     @program
-      .version('0.0.0')
+      .version('0.1.0')
       .option('-d, --dir <value>', 'served files directory')
       .option('-v, --verbose', 'speak to me')
       .option('-f, --file <path>', 'additional config file')
