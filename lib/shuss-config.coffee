@@ -1,10 +1,6 @@
 convict = require 'convict'
 
 config = convict {
-  env:
-    doc: 'The application environment.'
-    default: 'development'
-    env: 'NODE_ENV'
   verbose:
     doc: 'speak to me'
     default: false
@@ -17,13 +13,13 @@ config = convict {
     doc: 'Served file directory'
     default: '.'
     env: 'SHUSS_DIR'
-  livereloadport:
-    doc: 'Enable livereload'
-    default: 35729
-    env: 'SHUSS_LR'
   livereload:
-    doc: 'The livereload server port'
+    doc: 'Enable livereload'
     default: false
+    env: 'SHUSS_LR'
+  livereloadport:
+    doc: 'The livereload server port'
+    default: 35729
     env: 'SHUSS_LR_PORT'
 }
 
