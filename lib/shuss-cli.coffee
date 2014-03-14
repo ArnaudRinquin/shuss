@@ -2,6 +2,14 @@ program = require('commander')
 ShussServer = require './shuss-server'
 
 class ShussCli
+
+  @ascii = "\n" +
+      "   _____ __                   \n" +
+      "  / ___// /_  __  ____________\n" +
+      "  \\__ \\/ __ \\/ / / / ___/ ___/\n" +
+      " ___/ / / / / /_/ (__  |__  ) \n" +
+      "/____/_/ /_/\\__,_/____/____/  \n"
+
   constructor:(@program)->
     @program
       .version('0.1.1')
@@ -42,6 +50,7 @@ class ShussCli
 
   _startAction: (port)=>
     @logger.debug 'starting'
+    console.log ShussCli.ascii
     @_loadCliArgs()
     port && @config.set 'port', port
 
