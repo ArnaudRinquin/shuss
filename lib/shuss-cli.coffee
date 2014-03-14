@@ -17,6 +17,7 @@ class ShussCli
     @program.parse process.argv
 
     @_startAction() if @program.args.length == 0
+    @_startAction(@program.args[0]) if @program.args.length == 1
 
 
   _loadCliArgs: ()->
