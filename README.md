@@ -116,6 +116,8 @@ $ > cat config.json
 ### features
 
 * run as a daemon
+* access to more config (livereload especially)
+* any idea?
 
 ### integration
 
@@ -125,8 +127,7 @@ So much to do!
 * gulp-shuss
 * atom-shuss
 * sublime-shuss
-* anything-shuss
-* heroku-shuss
+* younameit-shuss
 
 License
 =======

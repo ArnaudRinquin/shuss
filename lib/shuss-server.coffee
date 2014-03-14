@@ -19,7 +19,9 @@ class ShussServer
       lrport = @config.get 'livereloadport'
       @logger.debug 'starting livereload server on port', lrport
       dir = @_getResolvedDir()
-      @lrserver = livereload.createServer()
+      @lrserver = livereload.createServer {
+        port: lrport
+      }
       @lrserver.watch dir
 
   stop:()->
