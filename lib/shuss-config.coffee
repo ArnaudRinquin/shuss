@@ -8,10 +8,6 @@ config = convict {
   verbose:
     doc: 'speak to me'
     default: false
-  file:
-    doc: 'Additional config file.'
-    default: null
-    env: 'SHUSS_CFGFILE'
   port:
     doc: 'Listened port'
     format: 'port'
@@ -30,9 +26,6 @@ config = convict {
     default: false
     env: 'SHUSS_LR_PORT'
 }
-
-# filepath = config.get 'file'
-# config.loadFile(filepath) if filepath
 
 config.validate()
 

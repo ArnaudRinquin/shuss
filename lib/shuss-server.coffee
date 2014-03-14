@@ -1,34 +1,38 @@
 express = require 'express'
-logger = require './shuss-logger'
 livereload = require 'livereload'
 path = require 'path'
 # livereload = require 'livereload'
 
 class ShussServer
 
-  constructor: (@config)->
+  constructor: (@config, @logger)->
     @app = express()
     @_init()
 
   start:()->
     port = @config.get 'port'
 
-    logger.debug 'starting server on port', port
+    @logger.debug 'starting server on port', port
     @server = @app.listen port
 
     if @config.get 'livereload'
       lrport = @config.get 'livereloadport'
-      logger.debug 'starting livereload server on port', lrport
-      # @lrserver = livereload.createServer()
-      # @lrserver.watch @config.get 'dir'
+      @logger.debug 'starting livereload server on port', lrport
+      dir = @_getResolvedDir()
+      @lrserver = livereload.createServer()
+      @lrserver.watch dir
 
   stop:()->
     return unless @server
     @server.close()
 
   _init:()->
-    dir = @config.get 'dir'
+    dir = @_getResolvedDir()
+    @logger.info 'serving', dir, "on http://0.0.0.0:#{@config.get 'port'}"
     @app.use express.static dir
     @app.use express.directory dir
+
+  _getResolvedDir:()->
+    path.resolve @config.get 'dir'
 
 module.exports = ShussServer

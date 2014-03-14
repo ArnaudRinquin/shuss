@@ -1,0 +1,7 @@
+#!/usr/bin/env coffee
+
+config = require '../lib/shuss-config'
+logger = require '../lib/shuss-logger'
+cli = require '../lib/shuss-cli'
+
+cli.run(config, logger)
