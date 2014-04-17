@@ -1,46 +1,50 @@
-argv = require('yargs')
-      .options('d',
+yargs = require('yargs')
+      .usage('shuss [options...]')
+      .options 'd',
         alias: 'dir'
         default: '.'
         describe: 'Served files directory'
-      )
-      .options('p',
+      .options 'p',
         alias: 'port'
         default: '1234'
         describe: 'Runs Shuss on the specified port'
-      )
-      .options('verbose',
+      .options 'verbose',
         boolean: true
         describe: 'Speak to me'
-      )
-      .options('l',
+      .options 'l',
         alias: 'livereload'
         boolean: true
         describe: 'Enables LiveReload'
-      )
-      .options('f',
+      .options 'f',
         alias: 'file'
         describe: 'Config file path'
-      )
-      .options('v',
+      .options 'v',
         alias: 'version'
         boolean: true
         describe: 'Return actual Shuss version'
-      )
-      .argv
+      .options 'h',
+        alias: 'help'
+        boolean: true
+        describe: 'Displays Shuss help'
 ShussServer = require './shuss-server'
 
 class ShussCli
-  constructor:(@argv)->
+  constructor:(@yargs)->
+    @argv = @yargs.argv
 
   run:(@config, @logger)=>
     if @argv.version
       @_version()
+    else if @argv.help
+      @_help()
     else
       @_start()
 
   _version: ()->
     console.log require('../package').version
+
+  _help: ()->
+    console.log @yargs.help()
 
   _start: ()->
     @logger.debug 'starting'
@@ -52,4 +56,4 @@ class ShussCli
 
     new ShussServer(@config, @logger).start()
 
-module.exports = new ShussCli argv
+module.exports = new ShussCli yargs
