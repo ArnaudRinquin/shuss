@@ -112,13 +112,46 @@ $ > cat config.json
 }
 ```
 
+## plugins
+
+While being very simple, Shuss can handle complexe plugins.
+
+### Using a plugin
+
+To use a plugin, you will probably have to install them in the same scope as shuss. Chances are you must install them globaly:
+
+```
+npm i -G shuss-my-awesome-plugin
+```
+
+Then, you just have to specify the comma separated list of plugins you want to use, along with their own arguments. Here is an example with `shuss-basic-auth`
+
+```
+shuss --plugins basic-auth --username admin --password foobar
+```
+
+### Available plugins
+
+* [shuss-basic-auth](https://github.com/ArnaudRinquin/shuss-basic-auth): basic HTTP auth plugin
+
+
+### Writing a plugin
+
+A plugin is a npm package prefixed by `shuss-`. Plugins can act on:
+
+* the underlaying [Express](http://expressjs.com/) app,
+* the [Express](http://expressjs.com/) object (i.e `require(express)`),
+* the [convict](https://github.com/mozilla/node-convict) settings object
+
+You are allowed to add your own cli args.
+
+All they have to define is a `load(app, express, config)` function. See the [`basic-auth`](https://github.com/ArnaudRinquin/shuss-basic-auth/blob/master/lib/shuss-basic-auth.coffee) example.
+
 ## todo
 
 ### features
 
 * test config solver, urgent, not how to do it yet, maybe [`node-env-file`](https://www.npmjs.org/package/node-env-file)
-* run as a daemon
-* access to more config (livereload especially)
 * any idea?
 
 ### integration
