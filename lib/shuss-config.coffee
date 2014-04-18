@@ -17,7 +17,7 @@ config = convict {
     doc: 'Enables LiveReload'
     default: false
     env: 'SHUSS_LR'
-  livereloadport:
+  livereload_port:
     doc: 'The LiveReload server port'
     default: 35729
     env: 'SHUSS_LR_PORT'

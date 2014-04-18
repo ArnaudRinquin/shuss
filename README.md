@@ -51,13 +51,14 @@ $ > shuss -h
 shuss [options...]
 
 Options:
-  -d, --dir         Served files directory            [default: "."]
-  -p, --port        Runs Shuss on the specified port  [default: "1234"]
-  --verbose         Speak to me
-  -l, --livereload  Enables LiveReload
-  -f, --file        Config file path
-  -v, --version     Return actual Shuss version
-  -h, --help        Displays Shuss help
+  -d, --dir          Served files directory                 [default: "."]
+  -p, --port         Runs Shuss on the specified port       [default: "1234"]
+  --verbose          Speak to me
+  -l, --livereload   Enables LiveReload
+  --livereload_port  Runs LiveReload on the specified port  [default: "35729"]
+  -f, --file         Config file path
+  -v, --version      Return actual Shuss version
+  -h, --help         Displays Shuss help
 ```
 
 Default usage:
@@ -76,10 +77,10 @@ info: serving /Users/arnaud/projects/shuss on http://0.0.0.0:6543
 Now with verbose, specified, port and livereload port
 
 ```shell
-$ > shuss -p 6543 --verbose -l 6523
+$ > shuss -p 6543 --verbose -l --livereload_port 6523
 info: serving /Users/romain/Projects/shuss on http://0.0.0.0:6543
 debug: starting server on port 6543
-debug: starting livereload server on port 35729
+debug: starting livereload server on port 6523
 ```
 
 ### ENV variables

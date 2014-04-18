@@ -13,8 +13,11 @@ yargs = require('yargs')
         describe: 'Speak to me'
       .options 'l',
         alias: 'livereload'
-        boolean: true
+        boolean: false
         describe: 'Enables LiveReload'
+      .options 'livereload_port',
+        default: '35729'
+        describe: 'Runs LiveReload on the specified port'
       .options 'f',
         alias: 'file'
         describe: 'Config file path'
