@@ -1,53 +1,62 @@
-program = require('commander')
+yargs = require('yargs')
+      .usage('shuss [options...]')
+      .options 'd',
+        alias: 'dir'
+        default: '.'
+        describe: 'Served files directory'
+      .options 'p',
+        alias: 'port'
+        default: '1234'
+        describe: 'Runs Shuss on the specified port'
+      .options 'verbose',
+        boolean: true
+        describe: 'Speak to me'
+      .options 'l',
+        alias: 'livereload'
+        boolean: false
+        describe: 'Enables LiveReload'
+      .options 'livereload_port',
+        default: '35729'
+        describe: 'Runs LiveReload on the specified port'
+      .options 'f',
+        alias: 'file'
+        describe: 'Config file path'
+      .options 'v',
+        alias: 'version'
+        boolean: true
+        describe: 'Return actual Shuss version'
+      .options 'h',
+        alias: 'help'
+        boolean: true
+        describe: 'Displays Shuss help'
 ShussServer = require './shuss-server'
 
 class ShussCli
-  constructor:(@program)->
-    @program
-      .version('0.1.1')
-      .option('-d, --dir <value>', 'served files directory')
-      .option('-v, --verbose', 'speak to me')
-      .option('-f, --file <path>', 'additional config file')
-      .option('-l, --livereload [port]', 'enable livereload, optionnaly give a port', parseInt)
-
-    startCommand = program.command 'start [port]'
-    startCommand.action @_startAction
+  constructor:(@yargs)->
+    @argv = @yargs.argv
 
   run:(@config, @logger)=>
-    @program.parse process.argv
+    if @argv.version
+      @_version()
+    else if @argv.help
+      @_help()
+    else
+      @_start()
 
-    @_startAction() if @program.args.length == 0
-    @_startAction(@program.args[0]) if @program.args.length == 1
+  _version: ()->
+    console.log require('../package').version
 
+  _help: ()->
+    console.log @yargs.help()
 
-  _loadCliArgs: ()->
-    cliArgs = {}
-    @program.verbose && cliArgs.verbose = @program.verbose
-    @program.dir && cliArgs.dir = @program.dir
-    # @program.livereload && cliArgs.livereload = @program.livereload
+  _start: ()->
+    @logger.debug 'starting'
 
-    lr = @program.livereload
-    unless typeof lr is 'undefined' # don't tuch anything unless -l given
-      if lr
-        cliArgs.livereload = true # enable lr
-        if typeof lr is 'number' # set the port if given one
-          cliArgs.livereloadport = lr
-      else
-        cliArgs.livereload = false
-
-    @config.load cliArgs
-    @config.loadFile path if path = @program.file
+    @config.load @argv
+    @config.loadFile path if path = @argv.file
     @config.validate()
     @logger.resetConfig()
 
-  _startAction: (port)=>
-    @logger.debug 'starting'
-    @_loadCliArgs()
-    port && @config.set 'port', port
+    new ShussServer(@config, @logger).start()
 
-    @logger.debug 'config', @config.toString()
-
-    server = new ShussServer(@config, @logger)
-    server.start()
-
-module.exports = new ShussCli program
+module.exports = new ShussCli yargs

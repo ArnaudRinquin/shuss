@@ -1,7 +1,6 @@
 express = require 'express'
 livereload = require 'livereload'
 path = require 'path'
-# livereload = require 'livereload'
 
 class ShussServer
 
@@ -16,7 +15,7 @@ class ShussServer
     @server = @app.listen port
 
     if @config.get 'livereload'
-      lrport = @config.get 'livereloadport'
+      lrport = @config.get 'livereload_port'
       @logger.debug 'starting livereload server on port', lrport
       dir = @_getResolvedDir()
       @lrserver = livereload.createServer {

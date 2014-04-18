@@ -48,21 +48,17 @@ There are very few settings, all defaulted.
 ### CLI usage
 ```shell
 $ > shuss -h
+shuss [options...]
 
-  Usage: shuss [options] [command]
-
-  Commands:
-
-    start [port]
-
-  Options:
-
-    -h, --help               output usage information
-    -V, --version            output the version number
-    -d, --dir <value>        served files directory
-    -v, --verbose            speak to me
-    -f, --file <path>        configuration file
-    -l, --livereload [port]  enable livereload, optionnaly give a port
+Options:
+  -d, --dir          Served files directory                 [default: "."]
+  -p, --port         Runs Shuss on the specified port       [default: "1234"]
+  --verbose          Speak to me
+  -l, --livereload   Enables LiveReload
+  --livereload_port  Runs LiveReload on the specified port  [default: "35729"]
+  -f, --file         Config file path
+  -v, --version      Return actual Shuss version
+  -h, --help         Displays Shuss help
 ```
 
 Default usage:
@@ -75,21 +71,14 @@ info: serving /Users/arnaud/projects/shuss on http://0.0.0.0:1234
 Specific port and livereload (on default port):
 
 ```shell
-$ > shuss 6543 -l
+$ > shuss -p 6543 -l
 info: serving /Users/arnaud/projects/shuss on http://0.0.0.0:6543
 ```
 Now with verbose, specified, port and livereload port
 
 ```shell
-$ > shuss start 6543 -v -l 6523
-debug: config {
-  "verbose": true,
-  "port": 6543,
-  "dir": ".",
-  "livereload": true,
-  "livereloadport": 6523
-}
-info: serving /Users/arnaud/projects/shuss on http://0.0.0.0:6543
+$ > shuss -p 6543 --verbose -l --livereload_port 6523
+info: serving /Users/romain/Projects/shuss on http://0.0.0.0:6543
 debug: starting server on port 6543
 debug: starting livereload server on port 6523
 ```
