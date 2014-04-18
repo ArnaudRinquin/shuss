@@ -29,6 +29,9 @@ yargs = require('yargs')
         alias: 'help'
         boolean: true
         describe: 'Displays Shuss help'
+      .options 'P',
+        alias: 'plugins'
+        describe: 'list of plugins to be loaded'
 ShussServer = require './shuss-server'
 
 class ShussCli
