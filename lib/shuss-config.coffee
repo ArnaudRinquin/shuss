@@ -21,6 +21,9 @@ config = convict {
     doc: 'The LiveReload server port'
     default: 35729
     env: 'SHUSS_LR_PORT'
+   plugins:
+    doc: 'The list of plugins to be loaded'
+    default: ''
 }
 
 config.validate()
