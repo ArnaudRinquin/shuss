@@ -141,7 +141,7 @@ A plugin is a npm package prefixed by `shuss-`. Plugins can act on:
 
 * the underlaying [Express](http://expressjs.com/) app,
 * the [Express](http://expressjs.com/) object (i.e `require(express)`),
-* the [Convicts](todo) settings object
+* the [convict](https://github.com/mozilla/node-convict) settings object
 
 You are allowed to add your own cli args.
 
