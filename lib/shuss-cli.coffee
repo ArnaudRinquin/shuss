@@ -33,6 +33,7 @@ yargs = require('yargs')
         alias: 'plugins'
         describe: 'list of plugins to be loaded'
 ShussServer = require './shuss-server'
+ShussPluginLoader = require './shuss-plugin-loader'
 
 class ShussCli
   constructor:(@yargs)->
@@ -60,6 +61,7 @@ class ShussCli
     @config.validate()
     @logger.resetConfig()
 
-    new ShussServer(@config, @logger).start()
+    pluginLoader = new ShussPluginLoader(@config, @logger)
+    new ShussServer(@config, @logger, pluginLoader).start()
 
 module.exports = new ShussCli yargs

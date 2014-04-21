@@ -4,7 +4,7 @@ path = require 'path'
 
 class ShussServer
 
-  constructor: (@config, @logger)->
+  constructor: (@config, @logger, @pluginLoader)->
     @app = express()
     @_init()
 
@@ -27,20 +27,10 @@ class ShussServer
     return unless @server
     @server.close()
 
-  _initPlugins: ()->
-    pluginsName = @config.get "plugins"
-    @logger.debug "Loading plugins [#{pluginsName}]"
-    @_loadPlugin(pluginName) for pluginName in pluginsName.split(',')
-
-  _loadPlugin: (pluginName)->
-    @logger.debug "Loading plugin #{pluginName}"
-    plugin = require "shuss-#{pluginName}"
-    plugin.load(@app, express, @config)
-
   _init:()->
     dir = @_getResolvedDir()
+    @pluginLoader.inject(@app, express)
     @logger.info 'serving', dir, "on http://0.0.0.0:#{@config.get 'port'}"
-    @_initPlugins()
     @app.use express.static dir
     @app.use express.directory dir
 
