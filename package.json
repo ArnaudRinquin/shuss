@@ -1,6 +1,6 @@
 {
   "name": "shuss",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Super simple yet comprehensive static files server. Shuss",
   "license": "MIT",
   "author": "Arnaud Rinquin",
