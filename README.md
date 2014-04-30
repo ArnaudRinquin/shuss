@@ -147,6 +147,24 @@ You are allowed to add your own cli args.
 
 All they have to define is a `load(app, express, config)` function. See the [`basic-auth`](https://github.com/ArnaudRinquin/shuss-basic-auth/blob/master/lib/shuss-basic-auth.coffee) example.
 
+## Development
+
+All Shuss Node.js module are written in CoffeeScript.
+
+In order to use correctly the `shuss` binary, you have to compile them in JavaScript.
+
+It can be done through:
+
+```bash
+$ grunt coffee:compile
+```
+
+Or more easily:
+
+```bash
+$ grunt
+```
+
 ## Todo
 
 ### Features
