@@ -164,6 +164,10 @@ So much to do!
 * sublime-shuss
 * younameit-shuss
 
+## Contributing
+
+[Contributors](https://github.com/ArnaudRinquin/shuss/graphs/contributors) and [CONTRIBUTING](https://github.com/ArnaudRinquin/shuss/blob/master/CONTRIBUTING.md)
+
 ## License
 
 Released under the MIT License. See the [LICENSE](https://github.com/ArnaudRinquin/shuss/blob/master/LICENSE.md) file for further details.
