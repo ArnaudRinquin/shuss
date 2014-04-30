@@ -166,4 +166,4 @@ So much to do!
 
 ## License
 
-MIT
+Released under the MIT License. See the [LICENSE](https://github.com/ArnaudRinquin/shuss/blob/master/LICENSE.md) file for further details.
