@@ -147,14 +147,14 @@ You are allowed to add your own cli args.
 
 All they have to define is a `load(app, express, config)` function. See the [`basic-auth`](https://github.com/ArnaudRinquin/shuss-basic-auth/blob/master/lib/shuss-basic-auth.coffee) example.
 
-## todo
+## Todo
 
-### features
+### Features
 
 * test config solver, urgent, not how to do it yet, maybe [`node-env-file`](https://www.npmjs.org/package/node-env-file)
 * any idea?
 
-### integration
+### Integration
 
 So much to do!
 
@@ -164,7 +164,10 @@ So much to do!
 * sublime-shuss
 * younameit-shuss
 
-License
-=======
+## Contributing
 
-MIT
+[Contributors](https://github.com/ArnaudRinquin/shuss/graphs/contributors) and [CONTRIBUTING](https://github.com/ArnaudRinquin/shuss/blob/master/CONTRIBUTING.md)
+
+## License
+
+Released under the MIT License. See the [LICENSE](https://github.com/ArnaudRinquin/shuss/blob/master/LICENSE.md) file for further details.
