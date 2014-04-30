@@ -10,11 +10,15 @@
   },
   "bin": "./bin/shuss",
   "dependencies": {
-    "coffee-script": "~1.7.1",
     "express": "~3.4.8",
     "convict": "~0.4.2",
     "winston": "~0.7.2",
     "livereload": "git://github.com/jwvdiermen/node-livereload.git",
     "yargs": "~1.2.1"
+  },
+  "devDependencies": {
+    "coffee-script": "~1.7.1",
+    "grunt": "~0.4.4",
+    "grunt-contrib-coffee": "~0.10.1"
   }
 }
